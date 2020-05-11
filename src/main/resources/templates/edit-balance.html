@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<div class="container my-5">
+    <h3> Transaction Information</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/customer/add-balance}" th:object="${transaction}" method="post">
+                    <div class="row">
+                        <text></text>
+                        <div class="form-group col-md-8">
+                            <label for="amount" class="col-form-label">Amount</label>
+                            <input type="text" th:field="*{amount}" class="form-control" id="amount"/>
+                        </div>
+
+                        <input type="hidden" id="tid" th:field="*{tid}">
+                        <input type="hidden" id="cid" th:field="*{cid}">
+
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value=" Submit ">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.TransactionsMapper" >
+  <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.Transactions" >
+    <id column="tid" property="tid" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="REAL" />
+    <result column="created_at" property="created_at" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from transactions
+    where tid = #{tid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zilinsproject.mybatis.entity.Transactions" >
+    insert into transactions (tid, cid, amount, 
+      created_at)
+    values (#{tid,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, #{amount,jdbcType=REAL}, 
+      #{created_at,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zilinsproject.mybatis.entity.Transactions" >
+    update transactions
+    set cid = #{cid,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=REAL},
+      created_at = #{created_at,jdbcType=TIMESTAMP}
+    where tid = #{tid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select tid, cid, amount, created_at
+    from transactions
+    where tid = #{tid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select tid, cid, amount, created_at
+    from transactions
+  </select>
+</mapper>
