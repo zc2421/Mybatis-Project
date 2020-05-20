@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.TSpecParamMapper" >
+  <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.TSpecParam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="spg_id" property="spg_id" jdbcType="INTEGER" />
+    <result column="spp_id" property="spp_id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="numeric" property="numeric" jdbcType="BIT" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_spec_param
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zilinsproject.mybatis.entity.TSpecParam" >
+    insert into t_spec_param (id, spg_id, spp_id, 
+      `name`, `numeric`, unit, `value`
+      )
+    values (#{id,jdbcType=INTEGER}, #{spg_id,jdbcType=INTEGER}, #{spp_id,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{numeric,jdbcType=BIT}, #{unit,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zilinsproject.mybatis.entity.TSpecParam" >
+    update t_spec_param
+    set spg_id = #{spg_id,jdbcType=INTEGER},
+      spp_id = #{spp_id,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      `numeric` = #{numeric,jdbcType=BIT},
+      unit = #{unit,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, spg_id, spp_id, `name`, `numeric`, unit, `value`
+    from t_spec_param
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, spg_id, spp_id, `name`, `numeric`, unit, `value`
+    from t_spec_param
+  </select>
+</mapper>
