@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.ProductCategoryHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.ProductCategoryHistory" >
+    <id column="category_id" property="category_id" jdbcType="INTEGER" />
+    <result column="category_name" property="category_name" jdbcType="VARCHAR" />
+    <result column="category_type" property="category_type" jdbcType="INTEGER" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_category_history
+    where category_id = #{category_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zilinsproject.mybatis.entity.ProductCategoryHistory" >
+    insert into product_category_history (category_id, category_name, category_type, 
+      create_time, update_time)
+    values (#{category_id,jdbcType=INTEGER}, #{category_name,jdbcType=VARCHAR}, #{category_type,jdbcType=INTEGER}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zilinsproject.mybatis.entity.ProductCategoryHistory" >
+    update product_category_history
+    set category_name = #{category_name,jdbcType=VARCHAR},
+      category_type = #{category_type,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      update_time = #{update_time,jdbcType=TIMESTAMP}
+    where category_id = #{category_id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select category_id, category_name, category_type, create_time, update_time
+    from product_category_history
+    where category_id = #{category_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select category_id, category_name, category_type, create_time, update_time
+    from product_category_history
+  </select>
+</mapper>

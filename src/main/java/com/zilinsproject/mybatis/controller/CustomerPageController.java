@@ -13,6 +13,9 @@ import javax.swing.plaf.IconUIResource;
 import java.util.*;
 
 
+/**
+ * @author zilinsmac
+ */
 @Controller
 @RequestMapping("customer")
 public class CustomerPageController {

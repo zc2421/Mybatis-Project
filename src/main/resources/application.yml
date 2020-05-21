@@ -16,7 +16,7 @@ spring:
     static-locations: classpath:/static,classpath:/META-INF/resources,classpath:/templates/
   #jdbc配置
   datasource:
-    url: jdbc:mysql://localhost:3306/aliproject?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/aliproject?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
     username: root
     password: Aber597186
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -26,3 +26,10 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   #模型所在的保命
   type-aliases-package: com.zilinsproject.mybatis.entity
+
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  path: /var/log/tomcat/
+#  file: /var/log/tomcat/app.log
+#  level: debug
