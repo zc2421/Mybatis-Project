@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.ProductInfoMapperExtended" >
+    <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.ProductInfo" >
+        <id column="product_id" property="product_id" jdbcType="INTEGER" />
+        <result column="product_name" property="product_name" jdbcType="VARCHAR" />
+        <result column="product_price" property="product_price" jdbcType="DECIMAL" />
+        <result column="product_stock" property="product_stock" jdbcType="INTEGER" />
+        <result column="product_description" property="product_description" jdbcType="VARCHAR" />
+        <result column="product_image" property="product_image" jdbcType="VARCHAR" />
+        <result column="category_type" property="category_type" jdbcType="INTEGER" />
+        <result column="saleable" property="saleable" jdbcType="BIT" />
+        <result column="valid" property="valid" jdbcType="BIT" />
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <insert id="insertAutoFill" parameterType="com.zilinsproject.mybatis.entity.ProductInfo" >
+        insert into product_info (product_name, product_price,
+        product_stock, product_description, product_image,
+        category_type, saleable, `valid`)
+        values (#{product_name,jdbcType=VARCHAR}, #{product_price,jdbcType=DECIMAL},
+        #{product_stock,jdbcType=INTEGER}, #{product_description,jdbcType=VARCHAR}, #{product_image,jdbcType=VARCHAR},
+        #{category_type,jdbcType=INTEGER}, #{saleable,jdbcType=BIT}, #{valid,jdbcType=BIT})
+    </insert>
+
+    <update id="updateSaleable" parameterType="com.zilinsproject.mybatis.entity.ProductInfo" >
+        select * from product_info where product_id = #{product_id,jdbcType=INTEGER} for update nowait;
+        update product_info
+            set saleable = #{saleable,jdbcType=BIT}
+        where product_id = #{product_id,jdbcType=INTEGER};
+    </update>
+
+</mapper>

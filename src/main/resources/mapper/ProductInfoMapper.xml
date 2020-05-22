@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.ProductInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.ProductInfo" >
+    <id column="product_id" property="product_id" jdbcType="INTEGER" />
+    <result column="product_name" property="product_name" jdbcType="VARCHAR" />
+    <result column="product_price" property="product_price" jdbcType="DECIMAL" />
+    <result column="product_stock" property="product_stock" jdbcType="INTEGER" />
+    <result column="product_description" property="product_description" jdbcType="VARCHAR" />
+    <result column="product_image" property="product_image" jdbcType="VARCHAR" />
+    <result column="category_type" property="category_type" jdbcType="INTEGER" />
+    <result column="saleable" property="saleable" jdbcType="BIT" />
+    <result column="valid" property="valid" jdbcType="BIT" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_info
+    where product_id = #{product_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zilinsproject.mybatis.entity.ProductInfo" >
+    insert into product_info (product_id, product_name, product_price, 
+      product_stock, product_description, product_image, 
+      category_type, saleable, `valid`, 
+      create_time, update_time)
+    values (#{product_id,jdbcType=INTEGER}, #{product_name,jdbcType=VARCHAR}, #{product_price,jdbcType=DECIMAL}, 
+      #{product_stock,jdbcType=INTEGER}, #{product_description,jdbcType=VARCHAR}, #{product_image,jdbcType=VARCHAR}, 
+      #{category_type,jdbcType=INTEGER}, #{saleable,jdbcType=BIT}, #{valid,jdbcType=BIT}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zilinsproject.mybatis.entity.ProductInfo" >
+    update product_info
+    set product_name = #{product_name,jdbcType=VARCHAR},
+      product_price = #{product_price,jdbcType=DECIMAL},
+      product_stock = #{product_stock,jdbcType=INTEGER},
+      product_description = #{product_description,jdbcType=VARCHAR},
+      product_image = #{product_image,jdbcType=VARCHAR},
+      category_type = #{category_type,jdbcType=INTEGER},
+      saleable = #{saleable,jdbcType=BIT},
+      `valid` = #{valid,jdbcType=BIT},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      update_time = #{update_time,jdbcType=TIMESTAMP}
+    where product_id = #{product_id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select product_id, product_name, product_price, product_stock, product_description, 
+    product_image, category_type, saleable, `valid`, create_time, update_time
+    from product_info
+    where product_id = #{product_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select product_id, product_name, product_price, product_stock, product_description, 
+    product_image, category_type, saleable, `valid`, create_time, update_time
+    from product_info
+  </select>
+</mapper>

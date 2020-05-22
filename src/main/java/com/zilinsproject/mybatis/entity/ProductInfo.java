@@ -1,9 +1,17 @@
 package com.zilinsproject.mybatis.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@DynamicUpdate
 public class ProductInfo implements Serializable {
     private Integer product_id;
 
@@ -23,8 +31,10 @@ public class ProductInfo implements Serializable {
 
     private Boolean valid;
 
+    @Column(name = "create_time", insertable = false, updatable = false)
     private Date create_time;
 
+    @Column(name = "update_time", insertable = false, updatable = false)
     private Date update_time;
 
     private static final long serialVersionUID = 1L;
