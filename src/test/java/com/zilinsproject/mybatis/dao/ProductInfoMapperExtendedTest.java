@@ -29,14 +29,14 @@ public class ProductInfoMapperExtendedTest {
     @Test
     public void insertAutoTest(){
         ProductInfo product = new ProductInfo();
-        product.setProduct_name("火龙果");
-        BigDecimal price = new BigDecimal(12.45);
+        product.setProduct_name("阿玛尼400");
+        BigDecimal price = new BigDecimal(59.45);
         product.setProduct_price(price);
-        product.setProduct_stock(30);
-        product.setCategory_type(5);
-        product.setProduct_description("新鲜火龙果，不甜不要钱");
-        product.setProduct_image("fruit.jpg");
-        product.setSaleable(true);
+        product.setProduct_stock(0);
+        product.setCategory_type(2);
+        product.setProduct_description("斩男色号");
+        product.setProduct_image("lipstick.jpg");
+        product.setSaleable(false);
         product.setValid(true);
         productInfoMapper.insertAutoFill(product);
     }
@@ -65,6 +65,12 @@ public class ProductInfoMapperExtendedTest {
     public void selectByPrimaryKeyTest(){
         ProductInfo product = productInfoMapper.selectByPrimaryKey(1);
         Assert.assertEquals(new Integer(1), product.getProduct_id());
+    }
+
+    @Test
+    public void getSaleableTest(){
+        List<ProductInfo> saleable = productInfoMapper.getSaleableProducts(true);
+        System.out.println(saleable.size());
     }
 
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>商品修改</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+
+<div class="container my-5">
+    <h3> 商品信息</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form role="form" th:action="@{/seller/product/save}"  method="post">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">名称</label>
+                            <input name="product_name" type="text" class="form-control" th:value="${productInfo.product_name}"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">价格</label>
+                            <input name="product_price" type="number" step=".01" class="form-control" th:value="${productInfo.product_price}"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">图片</label>
+                            <input name="product_image" type="text" class="form-control" th:value="${productInfo.product_image}"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">描述</label>
+                            <input name="product_description" type="text" class="form-control" th:value="${productInfo.product_description}"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">类目</label>
+                            <select name="category_type" class="form-control">
+                                <option th:each="c : ${categoryList}"
+                                        th:value="${c.category_type}"
+                                        th:text="${c.category_name}"
+                                        th:selected="${c.category_type == productInfo.category_type}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">库存</label>
+                            <input name="product_stock" type="number" class="form-control" th:value="${productInfo.product_stock}"/>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">是否上架</label>
+                            <select name="saleable" class="form-control">
+                                <option th:value="1" th:selected="${productInfo.saleable == true}">是</option>
+                                <option th:value="0" th:selected="${productInfo.saleable == false}">否</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">是否有效</label>
+                            <select name="valid" class="form-control">
+                                <option th:value="1" th:selected="${productInfo.valid == true}">是</option>
+                                <option th:value="0" th:selected="${productInfo.valid == false}">否</option>
+                            </select>
+                        </div>
+
+                        <input name="product_id" type="hidden" th:value="${productInfo.product_id}">
+
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value=" Submit ">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

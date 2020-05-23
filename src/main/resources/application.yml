@@ -20,6 +20,8 @@ spring:
     username: root
     password: Aber597186
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
 #mybatis配置
 mybatis:
   #映射文件路径
@@ -27,9 +29,3 @@ mybatis:
   #模型所在的保命
   type-aliases-package: com.zilinsproject.mybatis.entity
 
-#logging:
-#  pattern:
-#    console: "%d - %msg%n"
-#  path: /var/log/tomcat/
-#  file: /var/log/tomcat/app.log
-#  level: debug
