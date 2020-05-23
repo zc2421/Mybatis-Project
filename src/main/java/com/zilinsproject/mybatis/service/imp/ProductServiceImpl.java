@@ -22,6 +22,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo selectByPrimaryKey(Integer product_id) {
+        ProductInfo productInfo = productInfoMapper.selectByPrimaryKey(product_id);
+        if (productInfo == null) {
+            throw new CustomizeException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
         return productInfoMapper.selectByPrimaryKey(product_id);
     }
 
@@ -31,13 +35,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int updateProductInfo(ProductInfo record) {
-        return productInfoMapper.updateProductInfo(record);
-    }
+    @Transactional(rollbackFor = CustomizeException.class)
+    public int saveProductInfo(ProductInfo record) {
+        if (record.getProduct_id() == null){
+            return productInfoMapper.insertAutoFill(record);
+        }
 
-    @Override
-    public int insert(ProductInfo record) {
-        return productInfoMapper.insertAutoFill(record);
+        ProductInfo productInfo = productInfoMapper.selectByPrimaryKey(record.getProduct_id());
+        if (productInfo == null){
+            throw new CustomizeException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        return productInfoMapper.updateProductInfo(record);
     }
 
 
@@ -50,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(rollbackFor = CustomizeException.class)
     public int onSale(Integer product_id) {
         //二判
-        ProductInfo productInfo= productInfoMapper.selectByPrimaryKey(product_id);
+        ProductInfo productInfo = productInfoMapper.selectByPrimaryKey(product_id);
         if (productInfo == null){
             throw new CustomizeException(ResultEnum.PRODUCT_NOT_EXIST);
         }

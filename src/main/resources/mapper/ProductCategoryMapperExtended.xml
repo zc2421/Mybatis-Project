@@ -12,5 +12,34 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
     </resultMap>
 
+    <insert id="insertAutoFill" parameterType="com.zilinsproject.mybatis.entity.ProductCategory">
+        insert into product_category (category_name, category_type, parent_id, if_parent, is_deleted)
+        values (#{category_name,jdbcType=VARCHAR}, #{category_type,jdbcType=INTEGER},
+        #{parent_id,jdbcType=INTEGER}, #{if_parent,jdbcType=BIT}, #{is_deleted,jdbcType=BIT})
+    </insert>
+
+    <select id="selectAllValid" resultMap="BaseResultMap">
+        select category_id, category_name, category_type, parent_id, if_parent, is_deleted, create_time, update_time
+        from product_category
+        where is_deleted = false
+    </select>
+
+    <update id="updateCategory" parameterType="com.zilinsproject.mybatis.entity.ProductCategory">
+        select * from product_category where category_id = #{category_id,jdbcType=INTEGER} for update nowait;
+        update product_category
+            set category_name = #{category_name,jdbcType=VARCHAR},
+            category_type = #{category_type,jdbcType=INTEGER},
+            parent_id = #{parent_id,jdbcType=INTEGER},
+            if_parent = #{if_parent,jdbcType=BIT},
+            is_deleted = #{is_deleted,jdbcType=BIT}
+        where category_id = #{category_id,jdbcType=INTEGER}
+    </update>
+
+    <update id="deleteCategory" parameterType="java.lang.Integer">
+        select * from product_category where category_id = #{category_id,jdbcType=INTEGER} for update nowait;
+        update product_category
+            set is_deleted = true
+        where category_id = #{category_id,jdbcType=INTEGER};
+    </update>
 
 </mapper>

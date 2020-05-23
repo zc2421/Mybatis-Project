@@ -11,9 +11,7 @@ public interface ProductService {
 
     List<ProductInfo> selectAll();
 
-    int updateProductInfo(ProductInfo record);
-
-    int insert(ProductInfo record);
+    int saveProductInfo(ProductInfo record);
 
     List<ProductInfo> getSaleableProducts(Boolean saleable);
 

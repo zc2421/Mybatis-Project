@@ -29,7 +29,7 @@ public class CategoryServiceImplTest {
 
     @Test
     public void selectAll() {
-        List<ProductCategory> cats = categoryMapper.selectAll();
+        List<ProductCategory> cats = categoryMapper.selectAllValid();
         Assert.assertNotEquals(0, cats.size());
     }
 

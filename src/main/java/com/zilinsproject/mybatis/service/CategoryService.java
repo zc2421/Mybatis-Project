@@ -10,11 +10,15 @@ import java.util.List;
 
 public interface CategoryService {
 
-    int insert(ProductCategory record);
 
     ProductCategory selectByPrimaryKey(Integer category_id);
 
-    List<ProductCategory> selectAll();
+    List<ProductCategory> selectAllValid();
 
-    int updateByPrimaryKey(ProductCategory record);
+    int insert(ProductCategory record);
+
+    int updateCategory(ProductCategory record);
+
+    int deleteCategory(Integer category_id);
+
 }

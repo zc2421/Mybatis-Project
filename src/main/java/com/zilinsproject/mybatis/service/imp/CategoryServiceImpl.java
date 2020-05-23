@@ -20,22 +20,27 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     @Override
-    public int insert(ProductCategory record) {
-        return categoryMapper.insert(record);
-    }
-
-    @Override
     public ProductCategory selectByPrimaryKey(Integer category_id) {
         return categoryMapper.selectByPrimaryKey(category_id);
     }
 
     @Override
-    public List<ProductCategory> selectAll() {
-        return categoryMapper.selectAll();
+    public List<ProductCategory> selectAllValid() {
+        return categoryMapper.selectAllValid();
     }
 
     @Override
-    public int updateByPrimaryKey(ProductCategory record) {
-        return categoryMapper.updateByPrimaryKey(record);
+    public int insert(ProductCategory record) {
+        return categoryMapper.insertAutoFill(record);
+    }
+
+    @Override
+    public int updateCategory(ProductCategory record) {
+        return categoryMapper.updateCategory(record);
+    }
+
+    @Override
+    public int deleteCategory(Integer category_id) {
+        return categoryMapper.deleteCategory(category_id);
     }
 }

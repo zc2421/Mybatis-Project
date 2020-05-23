@@ -77,12 +77,18 @@ public class SellerProductController {
     public ModelAndView index(@RequestParam(value = "product_id", required = false) Integer product_id,
                       Map<String, Object> map){
         if (!StringUtils.isEmpty(product_id)){
-            ProductInfo productInfo = productService.selectByPrimaryKey(product_id);
-            map.put("productInfo", productInfo);
+            try{
+                ProductInfo productInfo = productService.selectByPrimaryKey(product_id);
+                map.put("productInfo", productInfo);
+            } catch (CustomizeException e){
+                map.put("msg", e.getMessage());
+                map.put("url", "/seller/product/list");
+                return new ModelAndView("/common/error",map);
+            }
         } else {
             map.put("productInfo", new ProductInfo());
         }
-        List<ProductCategory> cats = categoryService.selectAll();
+        List<ProductCategory> cats = categoryService.selectAllValid();
         map.put("categoryList", cats);
         return new ModelAndView("sellerProduct/edit-product");
     }
@@ -97,15 +103,13 @@ public class SellerProductController {
             map.put("url", "/seller/product/list");
             return new ModelAndView("common/error", map);
         }
+
         ProductInfo productInfo = new ProductInfo();
         BeanUtils.copyProperties(form, productInfo);
 
         try{
-            if (productInfo.getProduct_id() == null){
-                productService.insert(productInfo);
-            } else {
-                productService.updateProductInfo(productInfo);
-            }
+            productService.saveProductInfo(productInfo);
+
         } catch (CustomizeException e){
             map.put("msg", e.getMessage());
             map.put("url", "/seller/product/list");
