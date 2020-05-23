@@ -15,9 +15,7 @@ public interface CategoryService {
 
     List<ProductCategory> selectAllValid();
 
-    int insert(ProductCategory record);
-
-    int updateCategory(ProductCategory record);
+    int saveCategory(ProductCategory record);
 
     int deleteCategory(Integer category_id);
 
