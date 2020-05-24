@@ -73,6 +73,14 @@ public class ProductInfoMapperExtendedTest {
         System.out.println(saleable.size());
     }
 
+    @Test
+    public void getProductsOfSameCatTest(){
+        List<ProductInfo> products = productInfoMapper.getAllProductsOfCategory(1);
+        for (ProductInfo p: products){
+            System.out.println(p.toString());
+        }
+    }
+
 
 
 }

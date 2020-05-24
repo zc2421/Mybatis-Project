@@ -47,4 +47,10 @@ public class CategoryServiceImplTest {
         ProductCategory cat = categoryService.selectByPrimaryKey(3);
         System.out.println(cat.toString());
     }
+
+    @Test
+    @Transactional
+    public void deleteCategoryWithProductTest(){
+        categoryService.deleteCategory(3);
+    }
 }

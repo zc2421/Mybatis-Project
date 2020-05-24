@@ -1,6 +1,7 @@
 package com.zilinsproject.mybatis.dao;
 
 import com.zilinsproject.mybatis.entity.ProductCategory;
+import com.zilinsproject.mybatis.entity.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -65,4 +66,6 @@ public class ProductCategoryMapperExtendedTest {
         List<ProductCategory> cats = categoryMapper.selectAllByType(3);
         System.out.println(cats.size());
     }
+
+
 }

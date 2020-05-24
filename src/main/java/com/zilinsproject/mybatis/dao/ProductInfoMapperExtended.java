@@ -17,4 +17,6 @@ public interface ProductInfoMapperExtended extends ProductInfoMapper {
 
     List<ProductInfo> getSaleableProducts(Boolean saleable);
 
+    List<ProductInfo> getAllProductsOfCategory(Integer category_type);
+
 }

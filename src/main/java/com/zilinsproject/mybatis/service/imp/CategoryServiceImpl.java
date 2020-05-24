@@ -1,7 +1,9 @@
 package com.zilinsproject.mybatis.service.imp;
 
 import com.zilinsproject.mybatis.dao.ProductCategoryMapperExtended;
+import com.zilinsproject.mybatis.dao.ProductInfoMapperExtended;
 import com.zilinsproject.mybatis.entity.ProductCategory;
+import com.zilinsproject.mybatis.entity.ProductInfo;
 import com.zilinsproject.mybatis.enums.ResultEnum;
 import com.zilinsproject.mybatis.exceptions.CustomizeException;
 import com.zilinsproject.mybatis.service.CategoryService;
@@ -20,6 +22,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private ProductCategoryMapperExtended categoryMapper;
+    @Autowired
+    private ProductInfoMapperExtended productMapper;
 
 
     @Override
@@ -65,6 +69,10 @@ public class CategoryServiceImpl implements CategoryService {
         }
         if (productCategory.getIs_deleted()){
             throw new CustomizeException(ResultEnum.CATEGORY_STATUS_ERROR);
+        }
+        List<ProductInfo> existProducts = productMapper.getAllProductsOfCategory(productCategory.getCategory_type());
+        if (existProducts.size() > 0){
+            throw new CustomizeException(ResultEnum.CATEGORY_PRODUCT_EXIST_ERROR);
         }
         return categoryMapper.deleteCategory(category_id);
     }

@@ -22,6 +22,15 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
+#  data:
+#    elasticsearch:
+#      cluster-name: elasticsearch
+#      cluster-nodes: 127.0.0.1:9300
+#      properties:
+#        path:
+#          logs: ./elasticsearch/log
+#          data: ./elasticsearch/data
+
 #mybatis配置
 mybatis:
   #映射文件路径

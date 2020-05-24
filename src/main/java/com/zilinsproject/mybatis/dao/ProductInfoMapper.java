@@ -1,9 +1,10 @@
 package com.zilinsproject.mybatis.dao;
 
 import com.zilinsproject.mybatis.entity.ProductInfo;
+
 import java.util.List;
 
-public interface ProductInfoMapper {
+public interface ProductInfoMapper{
     int deleteByPrimaryKey(Integer product_id);
 
     int insert(ProductInfo record);
