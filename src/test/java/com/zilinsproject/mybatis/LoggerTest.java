@@ -15,8 +15,8 @@ public class LoggerTest {
 
     @Test
     public void test1(){
-        String name  = "zilin";
-        String password = "Aber597186";
+        String name  = "zilinsmac";
+        String password = "123456";
         log.debug("debug...");
         log.info("name: {}, password: {}", name, password);
         log.error("error...");
