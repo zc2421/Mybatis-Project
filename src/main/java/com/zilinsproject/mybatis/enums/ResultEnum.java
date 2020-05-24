@@ -16,7 +16,8 @@ public enum ResultEnum {
     PRODUCT_STATUS_ERROR(101, "商品状态不存在"),
 
     CATEGORY_NOT_EXIST(200, "类目不存在"),
-    CATEGORY_STATUS_ERROR(201, "类目状态不存在")
+    CATEGORY_STATUS_ERROR(201, "类目状态不存在"),
+    CATEGORY_DUPLICATE_ERROR(201, "类目编号已存在")
     ;
 
     private Integer code;

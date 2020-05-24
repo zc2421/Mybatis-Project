@@ -18,5 +18,6 @@ public interface ProductCategoryMapperExtended extends ProductCategoryMapper{
 
     int deleteCategory(Integer category_id);
 
+    List<ProductCategory> selectAllByType(Integer category_type);
 
 }

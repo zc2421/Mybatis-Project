@@ -42,4 +42,10 @@
         where category_id = #{category_id,jdbcType=INTEGER};
     </update>
 
+    <select id="selectAllByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select category_id, category_name, category_type, parent_id, if_parent, is_deleted, create_time, update_time
+        from product_category
+        where category_type = #{category_type,jdbcType=INTEGER};
+    </select>
+
 </mapper>

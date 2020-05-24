@@ -39,9 +39,16 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional(rollbackFor = CustomizeException.class)
     public int saveCategory(ProductCategory record) {
+        /*插入新类别*/
         if (record.getCategory_id() == null){
+            List<ProductCategory> existCategories = categoryMapper.selectAllByType(record.getCategory_type());
+            if (existCategories.size() >= 1){
+                throw new CustomizeException(ResultEnum.CATEGORY_DUPLICATE_ERROR);
+            }
             return categoryMapper.insertAutoFill(record);
         }
+
+        /*更新已有类别*/
         ProductCategory productCategory = categoryMapper.selectByPrimaryKey(record.getCategory_id());
         if (productCategory == null){
             throw new CustomizeException(ResultEnum.CATEGORY_NOT_EXIST);

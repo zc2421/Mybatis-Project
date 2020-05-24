@@ -59,4 +59,10 @@ public class ProductCategoryMapperExtendedTest {
         ProductCategory cat = categoryMapper.selectByPrimaryKey(3);
         Assert.assertEquals(true,cat.getIs_deleted());
     }
+
+    @Test
+    public void selectAllByTypeTest(){
+        List<ProductCategory> cats = categoryMapper.selectAllByType(3);
+        System.out.println(cats.size());
+    }
 }

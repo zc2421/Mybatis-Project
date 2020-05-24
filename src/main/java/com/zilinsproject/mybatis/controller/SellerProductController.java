@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -89,7 +90,11 @@ public class SellerProductController {
             map.put("productInfo", new ProductInfo());
         }
         List<ProductCategory> cats = categoryService.selectAllValid();
-        map.put("categoryList", cats);
+        if (cats == null){
+            map.put("categoryList", new ArrayList<ProductCategory>());
+        }else{
+            map.put("categoryList", cats);
+        }
         return new ModelAndView("sellerProduct/edit-product");
     }
 

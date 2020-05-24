@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>修改类目</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+
+<div class="container my-5">
+    <h3>类目信息</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form role="form" th:action="@{/seller/category/save}"  method="post">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">名称</label>
+                            <input name="category_name" type="text" class="form-control" th:value="${category.category_name}"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">类型(Type)编号</label>
+                            <span th:if="${category.category_type != null}">
+                                <input name="category_type" type="number" readonly class="form-control" th:value="${category.category_type}"/>
+                            </span>
+                            <span th:unless="${category.category_type != null}">
+                                <input name="category_type" type="number" class="form-control" th:value="${category.category_type}"/>
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">是否有父类</label>
+                            <select name="if_parent" class="form-control">
+                                <option th:value="1" th:selected="${category.if_parent == true}">是</option>
+                                <option th:value="0" th:selected="${category.if_parent == false}">否</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label">父类名称(选填)</label>
+                            <select name="parent_id" class="form-control">
+                                <option></option>
+                                <option th:each="c : ${categoryList}"
+                                        th:value="${c.category_id}"
+                                        th:text="${c.category_name}"
+                                        th:selected="${c.category_id == category.parent_id}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <input name="category_id" type="hidden" th:value="${category.category_id}">
+
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value=" Submit ">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+</html>
