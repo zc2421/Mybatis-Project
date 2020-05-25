@@ -19,5 +19,9 @@ public interface ProductService {
 
     int offSale(Integer product_id);
 
+    List<ProductInfo> getProductsByCategory(Integer category_type);
+
+    List<ProductInfo> getProductsByName(String product_name);
+
 
 }

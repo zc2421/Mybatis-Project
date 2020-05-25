@@ -19,4 +19,6 @@ public interface ProductInfoMapperExtended extends ProductInfoMapper {
 
     List<ProductInfo> getAllProductsOfCategory(Integer category_type);
 
+    List<ProductInfo> getAllProductsByName(String product_name);
+
 }

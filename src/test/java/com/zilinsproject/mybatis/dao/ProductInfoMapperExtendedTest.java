@@ -81,6 +81,15 @@ public class ProductInfoMapperExtendedTest {
         }
     }
 
+    @Test
+    public void getProductsByNameTest(){
+        String p_name = "%方%";
+        List<ProductInfo> products = productInfoMapper.getAllProductsByName(p_name);
+        for (ProductInfo p: products){
+            System.out.println(p.toString());
+        }
+    }
+
 
 
 }

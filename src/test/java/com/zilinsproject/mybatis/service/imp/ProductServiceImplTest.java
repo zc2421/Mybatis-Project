@@ -60,4 +60,20 @@ public class ProductServiceImplTest {
         Assert.assertEquals(false, productInfo.getSaleable());
     }
 
+    @Test
+    public void getByCategoryTest(){
+        List<ProductInfo> products = productService.getProductsByCategory(1);
+        for (ProductInfo p: products){
+            System.out.println(p.toString());
+        }
+    }
+
+    @Test
+    public void getByNameTest(){
+        List<ProductInfo> products = productService.getProductsByName("%方%");
+        for (ProductInfo p: products){
+            System.out.println(p.toString());
+        }
+    }
+
 }

@@ -39,6 +39,11 @@
         select * from product_info where category_type = #{category_type,jdbcType=INTEGER}
     </select>
 
+    <select id="getAllProductsByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from product_info
+        where product_name like #{product_name,jdbcType=VARCHAR};
+    </select>
+
     <update id="updateProductInfo" parameterType="com.zilinsproject.mybatis.entity.ProductInfo" >
         select * from product_info where product_id = #{product_id,jdbcType=INTEGER} for update nowait;
         update product_info

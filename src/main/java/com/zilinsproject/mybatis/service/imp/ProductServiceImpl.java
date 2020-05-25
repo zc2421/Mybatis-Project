@@ -22,10 +22,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo selectByPrimaryKey(Integer product_id) {
-        ProductInfo productInfo = productInfoMapper.selectByPrimaryKey(product_id);
-        if (productInfo == null) {
-            throw new CustomizeException(ResultEnum.PRODUCT_NOT_EXIST);
-        }
         return productInfoMapper.selectByPrimaryKey(product_id);
     }
 
@@ -82,5 +78,15 @@ public class ProductServiceImpl implements ProductService {
         }
         productInfo.setSaleable(false);
         return productInfoMapper.updateSaleable(productInfo);
+    }
+
+    @Override
+    public List<ProductInfo> getProductsByCategory(Integer category_type) {
+        return productInfoMapper.getAllProductsOfCategory(category_type);
+    }
+
+    @Override
+    public List<ProductInfo> getProductsByName(String product_name) {
+        return productInfoMapper.getAllProductsByName(product_name);
     }
 }
