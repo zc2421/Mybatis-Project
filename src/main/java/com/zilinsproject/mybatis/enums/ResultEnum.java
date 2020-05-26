@@ -19,7 +19,13 @@ public enum ResultEnum {
     CATEGORY_NOT_EXIST(200, "类目不存在"),
     CATEGORY_STATUS_ERROR(201, "类目状态不存在"),
     CATEGORY_DUPLICATE_ERROR(201, "类目编号已存在"),
-    CATEGORY_PRODUCT_EXIST_ERROR(201, "类目存在商品")
+    CATEGORY_PRODUCT_EXIST_ERROR(201, "类目存在商品"),
+
+    USERNAME_ALREADY_EXIST(300, "用户名已被注册"),
+    EMAIL_ALREADY_EXIST(301, "邮箱已被注册"),
+    REGISTER_FAILED_ERROR(302, "用户注册失败"),
+    LOGGING_INFO_NOT_CORRECT(303, "用户名或密码错误"),
+    LOGIN_STATUS_ERROR(304, "用户没有登陆")
     ;
 
     private Integer code;
