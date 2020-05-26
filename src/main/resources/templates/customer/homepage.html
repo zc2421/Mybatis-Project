@@ -12,30 +12,80 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar w/ text</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-        </ul>
-        <span class="navbar-text">
-            <a th:href="@{/user/logout}">Logout</a>
-        </span>
-    </div>
-</nav>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="#">导航栏</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> 我的主页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> 我的卡包 </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> 我的订单 </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">历史交易记录</a>
+                </li>
+            </ul>
 
-<h1>Hello, <span th:text="${userInfo.username}"></span></h1>
+            <span class="navbar-text">
+                <a th:href="@{/user/logout}">退出登录</a>
+            </span>
+
+        </div>
+    </nav>
+
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="jumbotron">
+                <h1>尊敬的, <span th:text="${userInfo.username}"></span></h1>
+                <h5>您的账户余额为: xxxx</h5>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">余额充值</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">充值的余额可在商品下单时用于现金的抵消</p>
+                <a href="#"  class="btn btn-primary">进入充值页面 >></a>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">领取优惠券</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">在优惠券广场领取更多优惠券，可用于商品下单时的现金抵消</p>
+                <a href="#" class="btn btn-primary">浏览优惠券 >></a>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">商品购物</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">进入商品页面进商品下单，下单成功后可在我的订单查看历史订单</p>
+                <a href="#" class="btn btn-primary">浏览商品 >></a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 
 </body>
