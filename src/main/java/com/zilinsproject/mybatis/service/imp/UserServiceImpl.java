@@ -1,7 +1,6 @@
 package com.zilinsproject.mybatis.service.imp;
 
 
-import com.zilinsproject.mybatis.dao.UserInfoMapper;
 import com.zilinsproject.mybatis.dao.UserInfoMapperExtended;
 import com.zilinsproject.mybatis.entity.UserInfo;
 import com.zilinsproject.mybatis.enums.ResultEnum;

@@ -1,6 +1,7 @@
 package com.zilinsproject.mybatis.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class UserInfo implements Serializable {
@@ -13,6 +14,8 @@ public class UserInfo implements Serializable {
     private String email;
 
     private Integer role;
+
+    private BigDecimal user_balance;
 
     private Date create_time;
 
@@ -60,6 +63,14 @@ public class UserInfo implements Serializable {
         this.role = role;
     }
 
+    public BigDecimal getUser_balance() {
+        return user_balance;
+    }
+
+    public void setUser_balance(BigDecimal user_balance) {
+        this.user_balance = user_balance;
+    }
+
     public Date getCreate_time() {
         return create_time;
     }
@@ -87,6 +98,7 @@ public class UserInfo implements Serializable {
         sb.append(", password=").append(password);
         sb.append(", email=").append(email);
         sb.append(", role=").append(role);
+        sb.append(", user_balance=").append(user_balance);
         sb.append(", create_time=").append(create_time);
         sb.append(", update_time=").append(update_time);
         sb.append(", serialVersionUID=").append(serialVersionUID);
