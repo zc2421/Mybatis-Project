@@ -38,5 +38,11 @@
         from user_info
         where username = #{username,jdbcType=VARCHAR};
     </select>
+    <update id="updateUserbalance" parameterType="com.zilinsproject.mybatis.entity.UserInfo">
+        select * from user_info where user_id = #{user_id,jdbcType=INTEGER} for update nowait;
+        update user_info
+        set user_balance = #{user_balance,jdbcType=DECIMAL}
+        where user_id = #{user_id,jdbcType=INTEGER};
+    </update>
 
 </mapper>

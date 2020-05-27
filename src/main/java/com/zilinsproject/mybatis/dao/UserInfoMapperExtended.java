@@ -16,4 +16,6 @@ public interface UserInfoMapperExtended extends UserInfoMapper{
     int insertAutoFill (UserInfo userInfo);
 
     UserInfo selectByUsername (String username);
+
+    int updateUserbalance (UserInfo userInfo);
 }

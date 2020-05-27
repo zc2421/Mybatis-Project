@@ -25,7 +25,8 @@ public enum ResultEnum {
     EMAIL_ALREADY_EXIST(301, "邮箱已被注册"),
     REGISTER_FAILED_ERROR(302, "用户注册失败"),
     LOGGING_INFO_NOT_CORRECT(303, "用户名或密码错误"),
-    LOGIN_STATUS_ERROR(304, "用户没有登陆")
+    LOGIN_STATUS_ERROR(304, "用户没有登陆"),
+    USER_NOT_EXIST(305, "用户不存在")
     ;
 
     private Integer code;

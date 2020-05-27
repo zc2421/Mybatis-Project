@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
     private UserInfoMapperExtended userMapper;
 
     @Override
+    public UserInfo selectByUserId(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public void register(UserInfo userinfo) {
         String username = userinfo.getUsername();
         if (userMapper.countByUsername(username) > 0) {
@@ -60,5 +65,17 @@ public class UserServiceImpl implements UserService {
         }
 
         return userInfoCheck;
+    }
+
+    @Override
+    @Transactional(rollbackFor = CustomizeException.class)
+    public int updateUserBalance(UserInfo userInfo) {
+        //user not exist
+        UserInfo user = userMapper.selectByPrimaryKey(userInfo.getUser_id());
+        if (user == null){
+            throw new CustomizeException(ResultEnum.USER_NOT_EXIST);
+        }
+        return userMapper.updateUserbalance(userInfo);
+
     }
 }
