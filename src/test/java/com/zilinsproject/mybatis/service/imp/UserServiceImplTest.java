@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -37,5 +39,17 @@ public class UserServiceImplTest {
         String password = "Aber455";
         UserInfo user = userService.login(username, password);
         System.out.println(user.toString());
+    }
+
+    @Test
+    @Transactional
+    public void testAddBalance(){
+        UserInfo userInfo = userService.selectByUserId(13);
+        BigDecimal balance = new BigDecimal(30);
+        userInfo.setUser_balance(balance);
+        userService.updateUserBalance(userInfo);
+
+        UserInfo userInfoAfter = userService.selectByUserId(13);
+        System.out.println(userInfoAfter.getUser_balance());
     }
 }
