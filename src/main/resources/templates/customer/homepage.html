@@ -29,7 +29,7 @@
                     <a class="nav-link" href="#"> 我的订单 </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">历史交易记录</a>
+                    <a class="nav-link" th:href="@{/user/transaction_history(user_id = ${userInfo.user_id})}" tabindex="-1" aria-disabled="true">历史交易记录</a>
                 </li>
             </ul>
 
@@ -46,7 +46,7 @@
         <div class="col-md-12 column">
             <div class="jumbotron">
                 <h1>尊敬的, <span th:text="${userInfo.username}"></span></h1>
-                <h5>您的账户余额为: xxxx</h5>
+                <h5>您的账户余额为: <span th:text="${userInfo.user_balance}"></h5>
 
             </div>
         </div>
@@ -59,7 +59,7 @@
             </div>
             <div class="card-body">
                 <p class="card-text">充值的余额可在商品下单时用于现金的抵消</p>
-                <a href="#"  class="btn btn-primary">进入充值页面 >></a>
+                <a th:href="@{/user/add_balance(id=${userInfo.user_id})}"  class="btn btn-primary">进入充值页面 >></a>
             </div>
         </div>
 

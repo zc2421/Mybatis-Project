@@ -25,6 +25,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo selectByUserId(Integer id) {
+        UserInfo userInfo = userMapper.selectByPrimaryKey(id);
+        if (userInfo == null) {
+            throw new CustomizeException(ResultEnum.USER_NOT_EXIST);
+        }
         return userMapper.selectByPrimaryKey(id);
     }
 

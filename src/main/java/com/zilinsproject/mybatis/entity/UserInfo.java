@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author zilinsmac
+ */
+
 public class UserInfo implements Serializable {
     private Integer user_id;
 
