@@ -38,3 +38,8 @@ mybatis:
   #模型所在的保命
   type-aliases-package: com.zilinsproject.mybatis.entity
 
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

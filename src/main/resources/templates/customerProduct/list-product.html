@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            购物车
+        </span>
+
+        <span class="navbar-text">
+            登陆
+        </span>
+    </div>
+</nav>
+<div class="container">
+    <!--    search bar-->
+    <div class="my-5">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+
+    <!--  page   -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <span th:if="${pageInfo.isHasPreviousPage()}">
+                <li class="page-item"><a class="page-link" th:href="@{/product/index(pageNum=${pageInfo.getPageNum()-1})}">Previous</a></li>
+            </span>
+
+            <span th:each="n: ${pageInfo.getNavigatepageNums()}">
+                <li class="page-item"><a class="page-link" th:href="@{/product/index(pageNum=${n})}" th:text="${n}"></a></li>
+            </span>
+
+            <span th:if="${pageInfo.isHasNextPage()}">
+                <li class="page-item"><a class="page-link" th:href="@{/product/index(pageNum=${pageInfo.getPageNum()+1})}">Next</a></li>
+            </span>
+        </ul>
+    </nav>
+
+
+    <div th:if="${#lists.isEmpty(pageInfo.getList())}">
+        <p>暂无商品记录！</p>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(pageInfo.getList())}">
+        <table class="table table-sm table-hover table-bordered">
+            <thead>
+            <th>商品图片</th>
+            <th>商品名称</th>
+            <th>价格</th>
+            <th>描述</th>
+            <th>类目</th>
+            <th>库存</th>
+            <th></th>
+            </thead>
+            <tbody>
+            <tr th:each="p: ${pageInfo.getList()}">
+                <td><img th:src="@{/images/noImage.png}" th:width="200"/></td>
+                <td th:text="${p.product_name}"></td>
+                <td th:text="${p.product_price}"></td>
+                <td th:text="${p.product_description}"></td>
+                <td th:text="${p.category_type}"></td>
+                <td th:text="${p.product_stock}"></td>
+                <td>
+                    <a href="#" class="btn btn-link"><i class="fas far-add ml-1"></i>加入购物车</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+</body>
