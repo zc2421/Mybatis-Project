@@ -15,6 +15,7 @@ public enum ResultEnum {
     PRODUCT_NOT_EXIST(100, "商品不存在"),
     PRODUCT_STATUS_ERROR(101, "商品状态不存在"),
     PRODUCT_NOT_FOUND(102, "未找到结果"),
+    PRODUCT_OUT_OF_STOCK(103,"商品已售罄"),
 
     CATEGORY_NOT_EXIST(200, "类目不存在"),
     CATEGORY_STATUS_ERROR(201, "类目状态不存在"),
@@ -26,7 +27,9 @@ public enum ResultEnum {
     REGISTER_FAILED_ERROR(302, "用户注册失败"),
     LOGGING_INFO_NOT_CORRECT(303, "用户名或密码错误"),
     LOGIN_STATUS_ERROR(304, "用户没有登陆"),
-    USER_NOT_EXIST(305, "用户不存在")
+    USER_NOT_EXIST(305, "用户不存在"),
+
+    PRODUCT_NOT_EXIST_IN_CART(401, "购物车没有该商品"),
     ;
 
     private Integer code;

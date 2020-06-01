@@ -10,4 +10,10 @@ import com.zilinsproject.mybatis.entity.ProductInfo;
 public interface ProductPageService {
 
     PageInfo<ProductInfo> listAllProducts(Integer pageNum, Integer pageSize);
+
+    ProductInfo getProductById(Integer product_id);
+
+    int minusProductStock(ProductInfo product);
+
+    int plusProductStock(ProductInfo product);
 }

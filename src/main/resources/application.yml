@@ -22,14 +22,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
-#  data:
-#    elasticsearch:
-#      cluster-name: elasticsearch
-#      cluster-nodes: 127.0.0.1:9300
-#      properties:
-#        path:
-#          logs: ./elasticsearch/log
-#          data: ./elasticsearch/data
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
 #mybatis配置
 mybatis:
@@ -43,3 +39,4 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
+

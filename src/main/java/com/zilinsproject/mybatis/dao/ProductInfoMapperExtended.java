@@ -21,4 +21,5 @@ public interface ProductInfoMapperExtended extends ProductInfoMapper {
 
     List<ProductInfo> getAllProductsByName(String product_name);
 
+
 }

@@ -26,4 +26,9 @@ public class ProductPageServiceImplTest {
 //        }
         System.out.println(page.getPageNum());
     }
+
+    @Test
+    public void getProductById(){
+        ProductInfo p = productService.getProductById(233);
+    }
 }

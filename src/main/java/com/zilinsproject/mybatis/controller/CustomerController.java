@@ -110,6 +110,7 @@ public class CustomerController {
     public ModelAndView homepage(HttpSession session,
                                  Map<String, Object> map){
         Integer user_id = (Integer) session.getAttribute(CustomerConst.CURRENT_USER);
+        System.out.println(user_id);
         UserInfo userInfo = userService.selectByUserId(user_id);
         map.put("userInfo", userInfo);
         return new ModelAndView("customer/homepage", map);

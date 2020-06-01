@@ -7,4 +7,6 @@ package com.zilinsproject.mybatis.utils;
  */
 public class CustomerConst {
     public static final String CURRENT_USER = "currentUser";
+
+    public static final String CURRENT_USER_CART = "currentUserCart";
 }
