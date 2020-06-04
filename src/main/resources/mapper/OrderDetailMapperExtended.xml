@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.OrderDetailMapperExtended" >
+    <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.OrderDetail" >
+        <id column="detail_id" property="detail_id" jdbcType="INTEGER" />
+        <result column="order_id" property="order_id" jdbcType="VARCHAR" />
+        <result column="product_id" property="product_id" jdbcType="INTEGER" />
+        <result column="product_name" property="product_name" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <insert id="insertAutoFill" parameterType="com.zilinsproject.mybatis.entity.OrderDetail" >
+        insert into order_detail (order_id, product_id,
+        product_name, price, num)
+        values (#{order_id,jdbcType=VARCHAR}, #{product_id,jdbcType=INTEGER},
+        #{product_name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{num,jdbcType=INTEGER})
+    </insert>
+
+    <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from order_detail
+        where order_id = #{order_id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByOrderId" parameterType="java.lang.String" >
+        delete from order_detail
+        where order_id = #{order_id,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>

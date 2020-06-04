@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.OrderMasterMapperExtended" >
+    <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.OrderMaster" >
+        <id column="order_id" property="order_id" jdbcType="VARCHAR" />
+        <result column="user_id" property="user_id" jdbcType="INTEGER" />
+        <result column="user_address" property="user_address" jdbcType="VARCHAR" />
+        <result column="amount" property="amount" jdbcType="DECIMAL" />
+        <result column="order_status" property="order_status" jdbcType="INTEGER" />
+        <result column="payment_status" property="payment_status" jdbcType="INTEGER" />
+        <result column="voucher_id" property="voucher_id" jdbcType="INTEGER" />
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <insert id="insertAutoFill" parameterType="com.zilinsproject.mybatis.entity.OrderMaster" >
+        insert into order_master (order_id, user_id, user_address,
+        amount, order_status, payment_status,
+        voucher_id)
+        values (#{order_id,jdbcType=VARCHAR}, #{user_id,jdbcType=INTEGER}, #{user_address,jdbcType=VARCHAR},
+        #{amount,jdbcType=DECIMAL}, #{order_status,jdbcType=INTEGER}, #{payment_status,jdbcType=INTEGER},
+        #{voucher_id,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        select * from order_master
+        where user_id = #{user_id,jdbcType=INTEGER}
+    </select>
+
+</mapper>

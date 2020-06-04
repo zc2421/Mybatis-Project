@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Order Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+
+<body>
+
+<div class="container mt-5">
+    <h2>订单详情</h2>
+    <table class="table table-sm table-hover table-bordered">
+        <thead>
+            <th>商品名称</th>
+            <th>价格</th>
+            <th>数量</th>
+        </thead>
+        <tbody>
+            <tr th:each="item: ${orderDTO.getOrderDetailList()}">
+                <td th:text="${item.product_name}"></td>
+                <td th:text="${item.price}"></td>
+                <td>
+                    <span th:text="${item.num}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div>
+        <p>总价格: <span th:text="${orderDTO.getAmount()}"></span></p>
+    </div>
+
+    <div>
+        <a th:href="@{/order/close_order(user_id = ${orderDTO.user_id}, order_id = ${orderDTO.order_id})}" type="button" class="btn btn-primary">确认下单</a>
+    </div>
+
+
+</div>
+
+
+</body>

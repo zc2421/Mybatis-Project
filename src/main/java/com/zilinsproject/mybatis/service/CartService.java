@@ -16,6 +16,8 @@ public interface CartService {
 
     void addCartToRedis(Integer userId, CartInfoList cartList);
 
+    void deleteCartFromRedis(Integer user_id);
+
     List<CartInfo> getAllItemsFromCart(Integer userId);
 
     void deleteProductById(Integer user_id, Integer product_id);
@@ -23,4 +25,6 @@ public interface CartService {
     void plusItemQuantity(Integer user_id, Integer product_id);
 
     void minusItemQuantity(Integer user_id, Integer product_id);
+
+
 }

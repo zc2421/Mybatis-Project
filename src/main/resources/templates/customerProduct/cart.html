@@ -51,15 +51,18 @@
             </tr>
             </tbody>
         </table>
+
+        <div>
+            <p>总价格: <span th:text="${total_price}"></span></p>
+        </div>
+
+        <div>
+            <a th:href="@{/order/create}" type="button" class="btn btn-primary">提交订单</a>
+        </div>
+
     </div>
 
-    <div>
-        <p>总价格: <span th:text="${total_price}"></span></p>
-    </div>
 
-    <div>
-        <button type="button" class="btn btn-primary">提交订单</button>
-    </div>
 
 
 </div>

@@ -30,6 +30,8 @@ public enum ResultEnum {
     USER_NOT_EXIST(305, "用户不存在"),
 
     PRODUCT_NOT_EXIST_IN_CART(401, "购物车没有该商品"),
+
+    ORDER_NOT_EXIST(500, "订单不存在");
     ;
 
     private Integer code;

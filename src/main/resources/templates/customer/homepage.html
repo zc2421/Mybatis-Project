@@ -26,7 +26,7 @@
                     <a class="nav-link" href="#"> 我的卡包 </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> 我的订单 </a>
+                    <a class="nav-link" th:href="@{/order/in_progress(user_id = ${userInfo.user_id})}"> 我的订单 </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/user/transaction_history(user_id = ${userInfo.user_id})}" tabindex="-1" aria-disabled="true">历史交易记录</a>

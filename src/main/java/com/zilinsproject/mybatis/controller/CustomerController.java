@@ -1,6 +1,7 @@
 package com.zilinsproject.mybatis.controller;
 
 
+import com.github.pagehelper.PageInfo;
 import com.zilinsproject.mybatis.entity.UserInfo;
 import com.zilinsproject.mybatis.entity.UserTransaction;
 import com.zilinsproject.mybatis.enums.ResultEnum;
@@ -11,9 +12,11 @@ import com.zilinsproject.mybatis.form.ProductForm;
 import com.zilinsproject.mybatis.form.UserLoginForm;
 import com.zilinsproject.mybatis.form.UserRegisterForm;
 import com.zilinsproject.mybatis.service.UserService;
+import com.zilinsproject.mybatis.service.imp.OrderServiceImpl;
 import com.zilinsproject.mybatis.service.imp.TransactionServiceImpl;
 import com.zilinsproject.mybatis.service.imp.UserServiceImpl;
 import com.zilinsproject.mybatis.utils.CustomerConst;
+import dto.OrderDTO;
 import javassist.bytecode.stackmap.BasicBlock;
 import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
@@ -47,6 +50,8 @@ public class CustomerController {
     private UserServiceImpl userService;
     @Autowired
     private TransactionServiceImpl transactionService;
+    @Autowired
+    private OrderServiceImpl orderService;
 
     @GetMapping("/index")
     public ModelAndView index(){

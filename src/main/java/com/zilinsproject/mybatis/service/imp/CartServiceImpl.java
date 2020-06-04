@@ -50,6 +50,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void deleteCartFromRedis(Integer user_id) {
+        String redisKey = String.format(CART_REDIS_KEY_TEMPLATE, user_id);
+        redisTemplate.delete(redisKey);
+    }
+
+    @Override
     public List<CartInfo> getAllItemsFromCart(Integer userId) {
         String redisKey = String.format(CART_REDIS_KEY_TEMPLATE, userId);
         HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();

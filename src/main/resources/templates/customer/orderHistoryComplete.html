@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>用户注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="#">导航栏</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/user/home}"> 我的主页 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"> 我的卡包 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""> 我的订单 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="" tabindex="-1" aria-disabled="true">历史交易记录 <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+
+        <span class="navbar-text">
+                <a th:href="@{/user/logout}">退出登录</a>
+            </span>
+
+    </div>
+</nav>
+
+
+
+
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <ul class="nav nav-tabs">
+                    <li class="active pr-3">
+                        <a th:href="@{/order/in_progress(user_id = ${user_id})}">未完成订单</a>
+                    </li>
+                    <li class="pr-3">
+                        <a th:href="@{/order/complete(user_id = ${user_id})}">已完成订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <table class="table table-sm table-hover table-bordered">
+            <thead>
+            <th>订单编号</th>
+            <th>创建日期</th>
+            <th>操作1</th>
+            </thead>
+            <tbody>
+            <tr th:each="orderDTO: ${pageInfo.getList()}">
+                <td th:text="${orderDTO.order_id}"></td>
+                <td th:text="${orderDTO.create_time}"></td>
+                <td>
+                    <a href="">查看详情</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>

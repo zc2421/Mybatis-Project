@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.OrderMasterMapper" >
+  <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.OrderMaster" >
+    <id column="order_id" property="order_id" jdbcType="VARCHAR" />
+    <result column="user_id" property="user_id" jdbcType="INTEGER" />
+    <result column="user_address" property="user_address" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="order_status" property="order_status" jdbcType="INTEGER" />
+    <result column="payment_status" property="payment_status" jdbcType="INTEGER" />
+    <result column="voucher_id" property="voucher_id" jdbcType="INTEGER" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_master
+    where order_id = #{order_id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zilinsproject.mybatis.entity.OrderMaster" >
+    insert into order_master (order_id, user_id, user_address, 
+      amount, order_status, payment_status, 
+      voucher_id, create_time, update_time
+      )
+    values (#{order_id,jdbcType=VARCHAR}, #{user_id,jdbcType=INTEGER}, #{user_address,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{order_status,jdbcType=INTEGER}, #{payment_status,jdbcType=INTEGER}, 
+      #{voucher_id,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zilinsproject.mybatis.entity.OrderMaster" >
+    update order_master
+    set user_id = #{user_id,jdbcType=INTEGER},
+      user_address = #{user_address,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      order_status = #{order_status,jdbcType=INTEGER},
+      payment_status = #{payment_status,jdbcType=INTEGER},
+      voucher_id = #{voucher_id,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      update_time = #{update_time,jdbcType=TIMESTAMP}
+    where order_id = #{order_id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select order_id, user_id, user_address, amount, order_status, payment_status, voucher_id, 
+    create_time, update_time
+    from order_master
+    where order_id = #{order_id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select order_id, user_id, user_address, amount, order_status, payment_status, voucher_id, 
+    create_time, update_time
+    from order_master
+  </select>
+</mapper>
