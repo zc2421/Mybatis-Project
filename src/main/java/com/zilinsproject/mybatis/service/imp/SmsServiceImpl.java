@@ -23,7 +23,7 @@ public class SmsServiceImpl implements SmsService {
         //send code through Tencent Cloud SMS
         try{
 
-            Credential cred = new Credential("AKID5uSmpbpHCy5k8EPbsPghRu7EenmZkSYt", "93nOimZ4IELBk5B1ZqsJWVHNr57wLTLS");
+            Credential cred = new Credential("AKIDaJm0xCsJflCKEnpC2PVLxL0PGtPCYmeh", "wc3wc2PFJ8jAOSYlNgjWBbmQnwuc3GVU");
 
             HttpProfile httpProfile = new HttpProfile();
             httpProfile.setEndpoint("sms.na-ashburn.tencentcloudapi.com");
