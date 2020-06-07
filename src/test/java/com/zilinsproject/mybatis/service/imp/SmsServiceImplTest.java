@@ -17,8 +17,14 @@ public class SmsServiceImplTest {
 
     @Test
     public void sendSmsLoginCode() {
-        String phoneNumber = "+16468645896";
-        Integer userId = 13;
-        smsService.SendSmsLoginCode(phoneNumber, userId);
+        String username = "zc2421";
+        smsService.SendSmsLoginCode(username);
+    }
+
+    @Test
+    public void loginViaCode(){
+        String username = "zc2421";
+        String code = "8804";
+        smsService.loginViaCode(username, code);
     }
 }

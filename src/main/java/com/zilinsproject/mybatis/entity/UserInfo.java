@@ -4,10 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * @author zilinsmac
- */
-
 public class UserInfo implements Serializable {
     private Integer user_id;
 
@@ -16,6 +12,8 @@ public class UserInfo implements Serializable {
     private String password;
 
     private String email;
+
+    private String phone;
 
     private Integer role;
 
@@ -57,6 +55,14 @@ public class UserInfo implements Serializable {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public Integer getRole() {
@@ -101,6 +107,7 @@ public class UserInfo implements Serializable {
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
         sb.append(", email=").append(email);
+        sb.append(", phone=").append(phone);
         sb.append(", role=").append(role);
         sb.append(", user_balance=").append(user_balance);
         sb.append(", create_time=").append(create_time);

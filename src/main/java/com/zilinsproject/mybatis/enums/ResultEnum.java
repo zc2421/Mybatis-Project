@@ -28,6 +28,10 @@ public enum ResultEnum {
     LOGGING_INFO_NOT_CORRECT(303, "用户名或密码错误"),
     LOGIN_STATUS_ERROR(304, "用户没有登陆"),
     USER_NOT_EXIST(305, "用户不存在"),
+    TEMPORAL_CODE_FAILED(310, "验证码发送失败"),
+    CLOUT_SERVER_STATUS_ERROR(311, "腾讯云服务器故障"),
+    CODE_INCORRECT_ERROR(312, "验证码错误"),
+    CODE_STATUS_ERROR (313, "验证码无效"),
 
     PRODUCT_NOT_EXIST_IN_CART(401, "购物车没有该商品"),
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
-    private static final List<String> EXCLUDE_PATH= Arrays.asList("/user/index", "/user/login", "/user/register",
+    private static final List<String> EXCLUDE_PATH= Arrays.asList("/user/index", "/user/login", "/user/getCode", "/user/register",
                                                                 "/status/**",
                                                                 "/product/**", "/");
 

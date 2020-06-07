@@ -1,23 +1,20 @@
 package com.zilinsproject.mybatis.controller;
 
-
-import com.github.pagehelper.PageInfo;
 import com.zilinsproject.mybatis.entity.UserInfo;
 import com.zilinsproject.mybatis.entity.UserTransaction;
 import com.zilinsproject.mybatis.enums.ResultEnum;
 import com.zilinsproject.mybatis.enums.UserEnum;
 import com.zilinsproject.mybatis.exceptions.CustomizeException;
-import com.zilinsproject.mybatis.form.BalanceSubmitForm;
-import com.zilinsproject.mybatis.form.ProductForm;
-import com.zilinsproject.mybatis.form.UserLoginForm;
-import com.zilinsproject.mybatis.form.UserRegisterForm;
+import com.zilinsproject.mybatis.form.*;
 import com.zilinsproject.mybatis.service.UserService;
 import com.zilinsproject.mybatis.service.imp.OrderServiceImpl;
+import com.zilinsproject.mybatis.service.imp.SmsServiceImpl;
 import com.zilinsproject.mybatis.service.imp.TransactionServiceImpl;
 import com.zilinsproject.mybatis.service.imp.UserServiceImpl;
 import com.zilinsproject.mybatis.utils.CustomerConst;
 import dto.OrderDTO;
 import javassist.bytecode.stackmap.BasicBlock;
+import net.sf.jsqlparser.expression.operators.relational.OldOracleJoinBinaryExpression;
 import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +49,8 @@ public class CustomerController {
     private TransactionServiceImpl transactionService;
     @Autowired
     private OrderServiceImpl orderService;
+    @Autowired
+    private SmsServiceImpl smsService;
 
     @GetMapping("/index")
     public ModelAndView index(){
@@ -85,8 +84,33 @@ public class CustomerController {
 
     }
 
+    @PostMapping("/getCode")
+    public ModelAndView getCode(@Valid UserCodeForm form,
+                                BindingResult bindingResult,
+                                Map<String, Object> map){
+        if (bindingResult.hasErrors()){
+            map.put("msg", Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
+            map.put("url", "/user/index");
+            return new ModelAndView("common/error", map);
+        }
+
+        try {
+            smsService.SendSmsLoginCode(form.getUsername());
+        } catch (CustomizeException e){
+            map.put("msg", e.getMessage());
+            map.put("url", "/user/index");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("username", form.getUsername());
+        return new ModelAndView("customer/loginCode", map);
+
+    }
+
+
+
     @PostMapping("/login")
-    public ModelAndView login(@Valid UserLoginForm form,
+    public ModelAndView login(@Valid UserCodeLoginForm form,
                         BindingResult bindingResult,
                         HttpSession session,
                         Map<String, Object> map){
@@ -98,7 +122,7 @@ public class CustomerController {
         }
 
         try {
-            UserInfo userInfo = userService.login(form.getUsername(), form.getPassword());
+            UserInfo userInfo = smsService.loginViaCode(form.getUsername(), form.getCode());
             //设置session
             session.setAttribute(CustomerConst.CURRENT_USER, userInfo.getUser_id());
             return homepage(session, map);
