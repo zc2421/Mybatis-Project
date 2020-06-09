@@ -1,11 +1,12 @@
 package com.zilinsproject.mybatis.service;
 
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.zilinsproject.mybatis.entity.CartInfo;
-import dto.OrderDTO;
+import com.zilinsproject.mybatis.dto.OrderDTO;
+import com.zilinsproject.mybatis.entity.OrderMaster;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -25,5 +26,12 @@ public interface OrderService {
     PageInfo<OrderDTO> listAllOrdersInProgress(Integer user_id, Integer pageNum, Integer pageSize);
 
     PageInfo<OrderDTO> listAllOrdersCompleted(Integer user_id, Integer pageNum, Integer pageSize);
+
+    BigDecimal calcPriceOfProductsByCategoryId(String order_id, Integer category_id);
+
+    OrderMaster getOrderMasterById(String order_id);
+
+    void updateOrderMaster(OrderMaster orderMaster);
+
 
 }

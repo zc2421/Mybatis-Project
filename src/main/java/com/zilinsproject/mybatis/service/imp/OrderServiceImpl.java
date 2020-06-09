@@ -16,7 +16,7 @@ import com.zilinsproject.mybatis.exceptions.CustomizeException;
 import com.zilinsproject.mybatis.service.OrderService;
 import com.zilinsproject.mybatis.service.ProductPageService;
 import com.zilinsproject.mybatis.utils.KeyUtils;
-import dto.OrderDTO;
+import com.zilinsproject.mybatis.dto.OrderDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -155,5 +155,35 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDTO> orderDTOs = getOrdersStatusByUserId(user_id, OrderStatusEnum.COMPLETE.getCode());
         PageHelper.startPage(pageNum, pageSize);
         return new PageInfo<>(orderDTOs);
+    }
+
+    @Override
+    public BigDecimal calcPriceOfProductsByCategoryId(String order_id, Integer category_id) {
+        List<OrderDetail> orderDetailList = orderDetailMapper.selectByOrderId(order_id);
+        BigDecimal total_amount = new BigDecimal(0);
+        for (OrderDetail orderDetail: orderDetailList){
+            ProductInfo productInfo = productService.getProductById(orderDetail.getProduct_id());
+            if (productInfo.getCategory_type().equals(category_id)){
+                total_amount = productInfo.getProduct_price()
+                        .multiply(new BigDecimal(orderDetail.getNum()))
+                        .add(total_amount);
+            }
+        }
+        return total_amount;
+    }
+
+    @Override
+    public OrderMaster getOrderMasterById(String order_id) {
+        return orderMasterMapper.selectByPrimaryKey(order_id);
+    }
+
+    @Override
+    @Transactional(rollbackFor = CustomizeException.class)
+    public void updateOrderMaster(OrderMaster orderMaster) {
+        OrderMaster order = orderMasterMapper.selectByPrimaryKey(orderMaster.getOrder_id());
+        if (order == null){
+            throw new CustomizeException(ResultEnum.ORDER_NOT_EXIST);
+        }
+        orderMasterMapper.updateByOrderId(orderMaster);
     }
 }

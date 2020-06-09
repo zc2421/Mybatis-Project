@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zilinsproject.mybatis.dao.VoucherMapper" >
+  <resultMap id="BaseResultMap" type="com.zilinsproject.mybatis.entity.Voucher" >
+    <id column="voucher_id" property="voucher_id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="deno" property="deno" jdbcType="DECIMAL" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="condition_id" property="condition_id" jdbcType="INTEGER" />
+    <result column="start_date" property="start_date" jdbcType="DATE" />
+    <result column="end_date" property="end_date" jdbcType="DATE" />
+    <result column="max_num" property="max_num" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from voucher
+    where voucher_id = #{voucher_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zilinsproject.mybatis.entity.Voucher" >
+    insert into voucher (voucher_id, code, description, 
+      deno, currency, condition_id, 
+      start_date, end_date, max_num
+      )
+    values (#{voucher_id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{deno,jdbcType=DECIMAL}, #{currency,jdbcType=VARCHAR}, #{condition_id,jdbcType=INTEGER}, 
+      #{start_date,jdbcType=DATE}, #{end_date,jdbcType=DATE}, #{max_num,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zilinsproject.mybatis.entity.Voucher" >
+    update voucher
+    set code = #{code,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      deno = #{deno,jdbcType=DECIMAL},
+      currency = #{currency,jdbcType=VARCHAR},
+      condition_id = #{condition_id,jdbcType=INTEGER},
+      start_date = #{start_date,jdbcType=DATE},
+      end_date = #{end_date,jdbcType=DATE},
+      max_num = #{max_num,jdbcType=INTEGER}
+    where voucher_id = #{voucher_id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select voucher_id, code, description, deno, currency, condition_id, start_date, end_date, 
+    max_num
+    from voucher
+    where voucher_id = #{voucher_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select voucher_id, code, description, deno, currency, condition_id, start_date, end_date, 
+    max_num
+    from voucher
+  </select>
+</mapper>

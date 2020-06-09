@@ -2,7 +2,7 @@ package com.zilinsproject.mybatis.service.imp;
 
 import com.github.pagehelper.PageInfo;
 import com.zilinsproject.mybatis.entity.CartInfo;
-import dto.OrderDTO;
+import com.zilinsproject.mybatis.dto.OrderDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -63,5 +61,12 @@ public class OrderServiceImplTest {
     public void testGetAllComplete(){
         PageInfo<OrderDTO> pageInfo = orderService.listAllOrdersCompleted(13, 1, 5);
         System.out.println(pageInfo.getList().size());
+    }
+
+    @Test
+    public void testCalcPrice(){
+        String order_id = "1591658890917245612";
+        Integer category_id = 1;
+        System.out.println(orderService.calcPriceOfProductsByCategoryId(order_id, category_id));
     }
 }

@@ -35,7 +35,12 @@ public enum ResultEnum {
 
     PRODUCT_NOT_EXIST_IN_CART(401, "购物车没有该商品"),
 
-    ORDER_NOT_EXIST(500, "订单不存在");
+    ORDER_NOT_EXIST(500, "订单不存在"),
+
+    VOUCHER_NOT_EXIST(600,"优惠券不存在"),
+    VOUCHER_NOT_VALID(601, "优惠券已失效"),
+    VOUCHER_NOT_QUALIFIED(602, "优惠券不符合"),
+    VOUCHER_DATE_STATS_ERROR(603, "优惠券使用日期不符合")
     ;
 
     private Integer code;

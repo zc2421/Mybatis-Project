@@ -28,4 +28,15 @@
         where user_id = #{user_id,jdbcType=INTEGER}
     </select>
 
+    <update id="updateByOrderId" parameterType="com.zilinsproject.mybatis.entity.OrderMaster" >
+        update order_master
+        set user_id = #{user_id,jdbcType=INTEGER},
+        user_address = #{user_address,jdbcType=VARCHAR},
+        amount = #{amount,jdbcType=DECIMAL},
+        order_status = #{order_status,jdbcType=INTEGER},
+        payment_status = #{payment_status,jdbcType=INTEGER},
+        voucher_id = #{voucher_id,jdbcType=INTEGER}
+        where order_id = #{order_id,jdbcType=VARCHAR}
+    </update>
+
 </mapper>

@@ -1,6 +1,5 @@
-package dto;
+package com.zilinsproject.mybatis.dto;
 
-import com.zilinsproject.mybatis.entity.CartInfo;
 import com.zilinsproject.mybatis.entity.OrderDetail;
 import lombok.Data;
 
