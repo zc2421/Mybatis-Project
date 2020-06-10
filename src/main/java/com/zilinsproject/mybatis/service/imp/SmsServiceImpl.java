@@ -63,7 +63,6 @@ public class SmsServiceImpl implements SmsService {
             SendSmsRequest req = SendSmsRequest.fromJsonString(params, SendSmsRequest.class);
 
             SendSmsResponse resp = client.SendSms(req);
-            System.out.println(SendSmsRequest.toJsonString(resp));
 
             //写入redis
             if (resp.getSendStatusSet()[0].getCode().equals(SUCCESS)){

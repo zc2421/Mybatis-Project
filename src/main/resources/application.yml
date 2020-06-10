@@ -22,7 +22,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
-
+  #redis缓存配置
   redis:
     host: 127.0.0.1
     port: 6379
