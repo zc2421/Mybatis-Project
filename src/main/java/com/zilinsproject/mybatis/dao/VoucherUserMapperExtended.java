@@ -10,4 +10,6 @@ public interface VoucherUserMapperExtended extends VoucherUserMapper{
 
     VoucherUser getUserVoucherById(Integer user_id, Integer voucher_id);
 
+    List<VoucherUser> getVoucherUserByUserId(Integer user_id);
+
 }

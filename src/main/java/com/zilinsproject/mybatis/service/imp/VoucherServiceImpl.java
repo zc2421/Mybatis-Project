@@ -1,7 +1,6 @@
 package com.zilinsproject.mybatis.service.imp;
 
 import com.google.gson.Gson;
-import com.zilinsproject.mybatis.dao.OrderDetailMapperExtended;
 import com.zilinsproject.mybatis.dao.VoucherConditionMapperExtended;
 import com.zilinsproject.mybatis.dao.VoucherMapperExtended;
 import com.zilinsproject.mybatis.dao.VoucherUserMapperExtended;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,16 +50,20 @@ public class VoucherServiceImpl implements VoucherService {
         }
 
         //2. 查看优惠券是否可用
-        //查看优惠券是否有效
+        //查看用户优惠券是否有效
         if (!voucherUser.getValid()){
             throw new CustomizeException(ResultEnum.VOUCHER_NOT_VALID);
         }
 
+        //查看优惠券本身是否过期
         Voucher voucher = voucherMapper.selectByPrimaryKey(voucher_id);
-
-        //查看优惠券是否过期
+        if (voucher == null){
+            throw new CustomizeException(ResultEnum.VOUCHER_NOT_VALID);
+        }
         Date current = new Date();
         if (current.compareTo(voucher.getStart_date()) < 0 || voucher.getEnd_date().compareTo(current) < 0) {
+            //to add here: 将用户优惠券设为失效
+            //..
             throw new CustomizeException(ResultEnum.VOUCHER_DATE_STATS_ERROR);
         }
 
@@ -77,7 +81,7 @@ public class VoucherServiceImpl implements VoucherService {
         voucherUser.setValid(false);
         voucherUserMapper.updateByPrimaryKey(voucherUser);
 
-        //4.更新订单状态
+        //4.更新订单总价及优惠券状态
         OrderMaster orderMaster = orderService.getOrderMasterById(order_id);
         orderMaster.setVoucher_id(voucher_id);
         BigDecimal productAmount = orderService.calcPriceOfProductsByCategoryId(order_id, conditionMap.getCategory_id());
@@ -88,13 +92,38 @@ public class VoucherServiceImpl implements VoucherService {
         orderMaster.setAmount(newPrice);
         orderService.updateOrderMaster(orderMaster);
 
-        return 0;
+        return 1;
+    }
+
+    @Override
+    public List<Voucher> getValidVouchersByUserId(Integer user_id) {
+        List<Voucher> validVouchers = new ArrayList<>();
+        List<VoucherUser> voucherUserList = voucherUserMapper.getVoucherUserByUserId(user_id);
+        voucherUserList.forEach(voucherUser -> {
+            if (voucherUser.getValid()){
+                validVouchers.add(voucherMapper.selectByPrimaryKey(voucherUser.getVoucher_id()));
+            }
+        });
+        return validVouchers;
+    }
+
+    @Override
+    public List<Voucher> getInvalidVouchersByUserId(Integer user_id) {
+        List<Voucher> validVouchers = new ArrayList<>();
+        List<VoucherUser> voucherUserList = voucherUserMapper.getVoucherUserByUserId(user_id);
+        voucherUserList.forEach(voucherUser -> {
+            if (!voucherUser.getValid()){
+                validVouchers.add(voucherMapper.selectByPrimaryKey(voucherUser.getVoucher_id()));
+            }
+        });
+        return validVouchers;
     }
 
 
     private int validateOrder(String order_id, VoucherConditionMap conditionMap){
         //查看商品类型总价是否满足
         Integer category_id = conditionMap.getCategory_id();
+
         if (category_id != null){
             BigDecimal qualifiedProductAmount = orderService.calcPriceOfProductsByCategoryId(order_id, conditionMap.getCategory_id());
             //总金额不满足要求

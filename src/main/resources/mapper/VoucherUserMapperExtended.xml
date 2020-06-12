@@ -15,4 +15,10 @@
         and voucher_id = #{voucher_id,jdbcType=INTEGER}
     </select>
 
+    <select id="getVoucherUserByUserId" resultMap="BaseResultMap">
+        select id, voucher_id, user_id, `valid`
+        from voucher_user
+        where user_id = #{user_id,jdbcType=INTEGER}
+    </select>
+
 </mapper>
