@@ -40,7 +40,9 @@ public enum ResultEnum {
     VOUCHER_NOT_EXIST(600,"优惠券不存在"),
     VOUCHER_NOT_VALID(601, "优惠券已失效"),
     VOUCHER_NOT_QUALIFIED(602, "优惠券不符合"),
-    VOUCHER_DATE_STATS_ERROR(603, "优惠券使用日期不符合")
+    VOUCHER_DATE_STATS_ERROR(603, "优惠券使用日期不符合"),
+
+    VOUCHER_SCHEDULER_LOCK_ERROR(1000, "redis分布式锁错误"),
     ;
 
     private Integer code;

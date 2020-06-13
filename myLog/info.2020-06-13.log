@@ -1,0 +1,67 @@
+2020-06-13 18:20:43.216  INFO [           main] [          c.z.mybatis.MybatisApplication] [logStarting,55] : Starting MybatisApplication on Zilins-Air with PID 25608 (/Users/zilinsmac/Desktop/mybatis/target/classes started by zilinsmac in /Users/zilinsmac/Desktop/mybatis)
+2020-06-13 18:20:43.222  INFO [           main] [          c.z.mybatis.MybatisApplication] [logStartupProfileInfo,651] : No active profile set, falling back to default profiles: default
+2020-06-13 18:20:45.299  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [multipleStoresDetected,249] : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-06-13 18:20:45.303  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,127] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-06-13 18:20:45.367  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,187] : Finished Spring Data repository scanning in 46ms. Found 0 JPA repository interfaces.
+2020-06-13 18:20:45.404  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [multipleStoresDetected,249] : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-06-13 18:20:45.407  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,127] : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-06-13 18:20:45.462  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,187] : Finished Spring Data repository scanning in 18ms. Found 0 Redis repository interfaces.
+2020-06-13 18:20:47.278  INFO [           main] [ o.s.b.w.embedded.tomcat.TomcatWebServer] [initialize,91] : Tomcat initialized with port(s): 8080 (http)
+2020-06-13 18:20:47.297  INFO [           main] [o.apache.coyote.http11.Http11NioProtocol] [       log,173] : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-13 18:20:47.298  INFO [           main] [org.apache.catalina.core.StandardService] [       log,173] : Starting service [Tomcat]
+2020-06-13 18:20:47.299  INFO [           main] [ org.apache.catalina.core.StandardEngine] [       log,173] : Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-06-13 18:20:47.510  INFO [           main] [      o.a.c.c.C.[Tomcat].[localhost].[/]] [       log,173] : Initializing Spring embedded WebApplicationContext
+2020-06-13 18:20:47.511  INFO [           main] [           o.s.web.context.ContextLoader] [prepareWebApplicationContext,284] : Root WebApplicationContext: initialization completed in 3990 ms
+2020-06-13 18:20:47.785  INFO [           main] [      com.zaxxer.hikari.HikariDataSource] [getConnection,110] : HikariPool-1 - Starting...
+2020-06-13 18:20:48.691  INFO [           main] [      com.zaxxer.hikari.HikariDataSource] [getConnection,123] : HikariPool-1 - Start completed.
+2020-06-13 18:20:48.806  INFO [           main] [ o.hibernate.jpa.internal.util.LogHelper] [logPersistenceUnitInformation,31] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-06-13 18:20:48.970  INFO [           main] [                   org.hibernate.Version] [logVersion,44] : HHH000412: Hibernate ORM core version 5.4.15.Final
+2020-06-13 18:20:49.313  INFO [           main] [org.hibernate.annotations.common.Version] [  <clinit>,49] : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-06-13 18:20:49.576  INFO [           main] [           org.hibernate.dialect.Dialect] [    <init>,172] : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-06-13 18:20:50.104  INFO [           main] [      o.h.e.t.j.p.i.JtaPlatformInitiator] [initiateService,52] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-06-13 18:20:50.119  INFO [           main] [j.LocalContainerEntityManagerFactoryBean] [buildNativeEntityManagerFactory,416] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-06-13 18:20:52.038  WARN [           main] [JpaBaseConfiguration$JpaWebConfiguration] [openEntityManagerInViewInterceptor,220] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-06-13 18:20:52.293  INFO [           main] [ o.s.s.concurrent.ThreadPoolTaskExecutor] [initialize,181] : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-13 18:20:52.977  INFO [           main] [s.a.ScheduledAnnotationBeanPostProcessor] [finishRegistration,297] : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-13 18:20:53.092  INFO [           main] [o.apache.coyote.http11.Http11NioProtocol] [       log,173] : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-13 18:20:53.163  INFO [           main] [ o.s.b.w.embedded.tomcat.TomcatWebServer] [     start,203] : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-13 18:20:53.170  INFO [           main] [          c.z.mybatis.MybatisApplication] [logStarted,61] : Started MybatisApplication in 11.719 seconds (JVM running for 13.165)
+2020-06-13 18:23:13.365  INFO [SpringContextShutdownHook] [ o.s.s.concurrent.ThreadPoolTaskExecutor] [  shutdown,218] : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-13 18:23:13.401  INFO [SpringContextShutdownHook] [j.LocalContainerEntityManagerFactoryBean] [   destroy,598] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-06-13 18:23:13.406  INFO [SpringContextShutdownHook] [      com.zaxxer.hikari.HikariDataSource] [     close,350] : HikariPool-1 - Shutdown initiated...
+2020-06-13 18:23:13.445  INFO [SpringContextShutdownHook] [      com.zaxxer.hikari.HikariDataSource] [     close,352] : HikariPool-1 - Shutdown completed.
+2020-06-13 18:23:48.585  INFO [           main] [          c.z.mybatis.MybatisApplication] [logStarting,55] : Starting MybatisApplication on Zilins-Air with PID 25665 (/Users/zilinsmac/Desktop/mybatis/target/classes started by zilinsmac in /Users/zilinsmac/Desktop/mybatis)
+2020-06-13 18:23:48.591  INFO [           main] [          c.z.mybatis.MybatisApplication] [logStartupProfileInfo,651] : No active profile set, falling back to default profiles: default
+2020-06-13 18:23:49.860  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [multipleStoresDetected,249] : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-06-13 18:23:49.866  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,127] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-06-13 18:23:49.969  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,187] : Finished Spring Data repository scanning in 76ms. Found 0 JPA repository interfaces.
+2020-06-13 18:23:50.006  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [multipleStoresDetected,249] : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-06-13 18:23:50.008  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,127] : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-06-13 18:23:50.039  INFO [           main] [.s.d.r.c.RepositoryConfigurationDelegate] [registerRepositoriesIn,187] : Finished Spring Data repository scanning in 11ms. Found 0 Redis repository interfaces.
+2020-06-13 18:23:51.428  INFO [           main] [ o.s.b.w.embedded.tomcat.TomcatWebServer] [initialize,91] : Tomcat initialized with port(s): 8080 (http)
+2020-06-13 18:23:51.444  INFO [           main] [o.apache.coyote.http11.Http11NioProtocol] [       log,173] : Initializing ProtocolHandler ["http-nio-8080"]
+2020-06-13 18:23:51.445  INFO [           main] [org.apache.catalina.core.StandardService] [       log,173] : Starting service [Tomcat]
+2020-06-13 18:23:51.446  INFO [           main] [ org.apache.catalina.core.StandardEngine] [       log,173] : Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-06-13 18:23:51.600  INFO [           main] [      o.a.c.c.C.[Tomcat].[localhost].[/]] [       log,173] : Initializing Spring embedded WebApplicationContext
+2020-06-13 18:23:51.601  INFO [           main] [           o.s.web.context.ContextLoader] [prepareWebApplicationContext,284] : Root WebApplicationContext: initialization completed in 2867 ms
+2020-06-13 18:23:51.845  INFO [           main] [      com.zaxxer.hikari.HikariDataSource] [getConnection,110] : HikariPool-1 - Starting...
+2020-06-13 18:23:52.354  INFO [           main] [      com.zaxxer.hikari.HikariDataSource] [getConnection,123] : HikariPool-1 - Start completed.
+2020-06-13 18:23:52.443  INFO [           main] [ o.hibernate.jpa.internal.util.LogHelper] [logPersistenceUnitInformation,31] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-06-13 18:23:52.600  INFO [           main] [                   org.hibernate.Version] [logVersion,44] : HHH000412: Hibernate ORM core version 5.4.15.Final
+2020-06-13 18:23:52.865  INFO [           main] [org.hibernate.annotations.common.Version] [  <clinit>,49] : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-06-13 18:23:53.085  INFO [           main] [           org.hibernate.dialect.Dialect] [    <init>,172] : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-06-13 18:23:53.436  INFO [           main] [      o.h.e.t.j.p.i.JtaPlatformInitiator] [initiateService,52] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-06-13 18:23:53.451  INFO [           main] [j.LocalContainerEntityManagerFactoryBean] [buildNativeEntityManagerFactory,416] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-06-13 18:23:54.745  WARN [           main] [JpaBaseConfiguration$JpaWebConfiguration] [openEntityManagerInViewInterceptor,220] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-06-13 18:23:54.946  INFO [           main] [ o.s.s.concurrent.ThreadPoolTaskExecutor] [initialize,181] : Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-13 18:23:55.494  INFO [           main] [s.a.ScheduledAnnotationBeanPostProcessor] [finishRegistration,297] : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-06-13 18:23:55.571  INFO [           main] [o.apache.coyote.http11.Http11NioProtocol] [       log,173] : Starting ProtocolHandler ["http-nio-8080"]
+2020-06-13 18:23:55.609  INFO [           main] [ o.s.b.w.embedded.tomcat.TomcatWebServer] [     start,203] : Tomcat started on port(s): 8080 (http) with context path ''
+2020-06-13 18:23:55.614  INFO [           main] [          c.z.mybatis.MybatisApplication] [logStarted,61] : Started MybatisApplication in 8.554 seconds (JVM running for 9.816)
+2020-06-13 18:24:00.208  INFO [pool-1-thread-1] [           io.lettuce.core.EpollProvider] [  <clinit>,68] : Starting without optional epoll library
+2020-06-13 18:24:00.210  INFO [pool-1-thread-1] [          io.lettuce.core.KqueueProvider] [  <clinit>,70] : Starting without optional kqueue library
+2020-06-13 18:24:00.388  INFO [pool-1-thread-1] [ c.z.mybatis.autotask.VoucherDBScheduler] [dateScheduler,86] : 定时器检查优惠券过期时间
+2020-06-13 18:24:06.272  INFO [SpringContextShutdownHook] [ o.s.s.concurrent.ThreadPoolTaskExecutor] [  shutdown,218] : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-13 18:24:06.405  INFO [SpringContextShutdownHook] [j.LocalContainerEntityManagerFactoryBean] [   destroy,598] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-06-13 18:24:06.407  INFO [SpringContextShutdownHook] [      com.zaxxer.hikari.HikariDataSource] [     close,350] : HikariPool-1 - Shutdown initiated...
+2020-06-13 18:24:06.437  INFO [SpringContextShutdownHook] [      com.zaxxer.hikari.HikariDataSource] [     close,352] : HikariPool-1 - Shutdown completed.

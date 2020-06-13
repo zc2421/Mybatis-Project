@@ -6,6 +6,9 @@ import com.zilinsproject.mybatis.dao.VoucherMapperExtended;
 import com.zilinsproject.mybatis.entity.Scheduler;
 import com.zilinsproject.mybatis.entity.Voucher;
 import com.zilinsproject.mybatis.entity.VoucherArchived;
+import com.zilinsproject.mybatis.enums.ResultEnum;
+import com.zilinsproject.mybatis.exceptions.CustomizeException;
+import com.zilinsproject.mybatis.service.RedisLock;
 import com.zilinsproject.mybatis.utils.SchedulerConst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -29,12 +32,18 @@ import java.util.List;
 @EnableScheduling
 public class VoucherDBScheduler implements SchedulingConfigurer {
 
+    //超时时间10s
+    private static final int TIMEOUT = 10 * 1000;
+    private static final String REDIS_LOCK_KEY = "VoucherSchedulerLock";
+
     @Autowired
     private SchedulerMapper schedulerMapper;
     @Autowired
     private VoucherMapperExtended voucherMapper;
     @Autowired
     private VoucherArchivedMapper voucherArchivedMapper;
+    @Autowired
+    private RedisLock redisLock;
 
 
     @Override
@@ -54,7 +63,14 @@ public class VoucherDBScheduler implements SchedulingConfigurer {
 
     }
 
+
     private void dateScheduler(){
+        //redis加锁
+        long time = System.currentTimeMillis() + TIMEOUT;
+        if (!redisLock.lock(REDIS_LOCK_KEY, String.valueOf(time))){
+            throw new CustomizeException(ResultEnum.VOUCHER_SCHEDULER_LOCK_ERROR);
+        }
+
         //查询所有优惠券是否过期
         Date now = new Date();
         List<Voucher> voucherList = voucherMapper.selectAll();
@@ -68,6 +84,9 @@ public class VoucherDBScheduler implements SchedulingConfigurer {
             }
         });
         log.info("定时器检查优惠券过期时间");
+
+        //redis解锁
+        redisLock.unlock(REDIS_LOCK_KEY, String.valueOf(time));
 
     }
 }
